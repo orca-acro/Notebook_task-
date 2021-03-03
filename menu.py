@@ -8,6 +8,10 @@ class Menu:
     """
 
     def __init__(self):
+        """
+        Initiate a dictionary that maps s strings to functions 
+        on the menu object itself.
+        """
         self.notebook = Notebook()
         self.choices = {
             "1": self.show_notes,
@@ -18,6 +22,9 @@ class Menu:
         }
 
     def display_menu(self):
+        """
+        Prints Notebook menu
+        """
         print("""
 Notebook Menu
 
@@ -42,6 +49,9 @@ Notebook Menu
                 print("{0} is not a valid choice".format(choice))
 
     def show_notes(self, notes=None):
+        """
+        Respond to user choise and shows list of notes.
+        """
         if not notes:
             notes = self.notebook.notes
         for note in notes:
@@ -49,16 +59,25 @@ Notebook Menu
                 note.id, note.tags, note.memo))
 
     def search_notes(self):
+        """
+        Search for note by id and returns it.
+        """
         filter = input("Search for: ")
         notes = self.notebook.search(filter)
         self.show_notes(notes)
 
     def add_note(self):
+        """
+        Add a new note to curent list.
+        """
         memo = input("Enter a memo: ")
         self.notebook.new_note(memo)
         print("Your note has been added.")
 
     def modify_note(self):
+        """
+        Modify chossen by id note.
+        """
         id = input("Enter a note id: ")
         memo = input("Enter a memo: ")
         tags = input("Enter tags: ")
@@ -68,6 +87,9 @@ Notebook Menu
             self.notebook.modify_tags(id, tags)
 
     def quit(self):
+        """
+        Finish progarm.
+        """
         print("Thank you for using your notebook today.")
         sys.exit(0)
 
